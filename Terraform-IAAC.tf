@@ -86,3 +86,11 @@ resource "aws_security_group" "web_sg" {
   egress { from_port = 0 to_port = 0 protocol = "-1" cidr_blocks = ["0.0.0.0/0"] }
   tags = { Name = "WebSecurityGroup" }
 }
+
+resource "aws_instance" "nginx_server" {
+  ami = "ami-0c55b159cbfafe1f0"
+  instance_type = "t2.micro"
+  subnet_id = aws_subnet.public_subnet_1.id
+  security_groups = [aws_security_group.web_sg.id]
+  tags = { Name = "NginxServer" }
+}
