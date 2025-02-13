@@ -53,3 +53,8 @@ resource "aws_subnet" "private_subnet_3" {
   availability_zone = "us-east-1c"
   tags = { Name = "PrivateSubnet3" }
 }
+
+resource "aws_internet_gateway" "gw" {
+  vpc_id = aws_vpc.main.id
+  tags = { Name = "InternetGateway" }
+}
